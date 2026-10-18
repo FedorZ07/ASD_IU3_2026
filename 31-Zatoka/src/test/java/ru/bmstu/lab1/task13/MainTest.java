@@ -2,28 +2,14 @@ package ru.bmstu.lab1.task13;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
+import ru.bmstu.lab1.common.ConsoleTestHelper;
 
 class MainTest {
 
     @Test
     void shouldPrintSortedArray() {
-        InputStream oldIn = System.in;
-        PrintStream oldOut = System.out;
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        try {
-            System.setIn(new ByteArrayInputStream("5\n5 -2 9 0 3\n".getBytes()));
-            System.setOut(new PrintStream(output));
-            Main.main(new String[0]);
-        } finally {
-            // возвращаем стандартные потоки, чтобы не сломать другие тесты
-            System.setIn(oldIn);
-            System.setOut(oldOut);
-        }
-        assertEquals("-2 0 3 5 9", output.toString().trim());
+        String actual = ConsoleTestHelper.run("5\n5 -2 9 0 3\n", () -> Main.main(new String[0]));
+        assertEquals("-2 0 3 5 9", actual);
     }
 }
