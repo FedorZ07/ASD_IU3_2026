@@ -1,6 +1,7 @@
 package ru.bmstu.lab1.task01;
 
 import java.util.Scanner;
+import ru.bmstu.lab1.common.ArrayIo;
 
 /**
  * Задача 1. Максимум и минимум.
@@ -9,6 +10,9 @@ import java.util.Scanner;
  */
 public class Main {
 
+    private Main() {
+    }
+
     /**
      * Читает массив с клавиатуры и выводит его минимум и максимум.
      *
@@ -16,12 +20,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = scanner.nextInt();
-        }
-
+        int[] arr = ArrayIo.readArray(scanner);
         int[] result = MinMaxFinder.findMinMax(arr);
         System.out.println(result[0] + " " + result[1]);
     }

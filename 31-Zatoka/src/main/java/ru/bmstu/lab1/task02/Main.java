@@ -1,6 +1,7 @@
 package ru.bmstu.lab1.task02;
 
 import java.util.Scanner;
+import ru.bmstu.lab1.common.ArrayIo;
 
 /**
  * Задача 2. Индекс первого вхождения.
@@ -9,6 +10,9 @@ import java.util.Scanner;
  */
 public class Main {
 
+    private Main() {
+    }
+
     /**
      * Читает массив и число x с клавиатуры и выводит индекс первого вхождения x.
      *
@@ -16,13 +20,8 @@ public class Main {
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = scanner.nextInt();
-        }
+        int[] arr = ArrayIo.readArray(scanner);
         int x = scanner.nextInt();
-
         System.out.println(FirstIndexFinder.findFirstIndex(arr, x));
     }
 }
