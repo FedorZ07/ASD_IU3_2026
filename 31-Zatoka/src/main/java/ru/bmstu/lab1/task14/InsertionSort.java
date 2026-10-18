@@ -8,6 +8,9 @@ package ru.bmstu.lab1.task14;
  */
 public class InsertionSort {
 
+    private InsertionSort() {
+    }
+
     /**
      * Сортирует массив по невозрастанию сортировкой вставками (на месте).
      * Левая часть arr[0..i-1] всегда уже отсортирована. Берём arr[i]

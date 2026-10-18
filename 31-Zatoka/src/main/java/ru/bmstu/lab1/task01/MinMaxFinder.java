@@ -7,6 +7,9 @@ package ru.bmstu.lab1.task01;
  */
 public class MinMaxFinder {
 
+    private MinMaxFinder() {
+    }
+
     /**
      * Находит минимум и максимум массива за один проход.
      * Начальные значения берём из первого элемента, поэтому

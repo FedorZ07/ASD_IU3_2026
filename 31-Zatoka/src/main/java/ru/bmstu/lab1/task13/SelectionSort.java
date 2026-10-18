@@ -8,6 +8,9 @@ package ru.bmstu.lab1.task13;
  */
 public class SelectionSort {
 
+    private SelectionSort() {
+    }
+
     /**
      * Сортирует массив по неубыванию сортировкой выбором (на месте).
      * На каждом шаге i ищем минимум в части arr[i..n-1]
