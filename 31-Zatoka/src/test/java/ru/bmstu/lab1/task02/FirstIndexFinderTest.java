@@ -33,12 +33,12 @@ class FirstIndexFinderTest {
     @Test
     void shouldReturnMinusOneWhenElementIsMissing() {
         int[] arr = {1, 2, 3};
-        assertEquals(-1, FirstIndexFinder.findFirstIndex(arr, 10));
+        assertEquals(FirstIndexFinder.NOT_FOUND, FirstIndexFinder.findFirstIndex(arr, 10));
     }
 
     @Test
     void shouldReturnMinusOneForEmptyArray() {
         int[] arr = {};
-        assertEquals(-1, FirstIndexFinder.findFirstIndex(arr, 1));
+        assertEquals(FirstIndexFinder.NOT_FOUND, FirstIndexFinder.findFirstIndex(arr, 1));
     }
 }

@@ -7,12 +7,18 @@ package ru.bmstu.lab1.task02;
  */
 public class FirstIndexFinder {
 
+    /** Ответ, если искомого числа в массиве нет (так требует условие). */
+    public static final int NOT_FOUND = -1;
+
+    private FirstIndexFinder() {
+    }
+
     /**
      * Ищет первый элемент, равный x, линейным проходом слева направо.
      *
      * @param arr массив чисел
      * @param x искомое число
-     * @return индекс первого вхождения x или -1, если x в массиве нет
+     * @return индекс первого вхождения x или NOT_FOUND (-1), если x в массиве нет
      */
     public static int findFirstIndex(int[] arr, int x) {
         for (int i = 0; i < arr.length; i++) {
@@ -21,6 +27,6 @@ public class FirstIndexFinder {
                 return i;
             }
         }
-        return -1;
+        return NOT_FOUND;
     }
 }
