@@ -33,4 +33,10 @@ class ArrayIoTest {
         int[] arr = {};
         assertEquals("", ArrayIo.toLine(arr));
     }
+
+    @Test
+    void shouldJoinOnlyFirstElements() {
+        int[] arr = {4, 5, 6, 7};
+        assertEquals("4 5", ArrayIo.toLine(arr, 2));
+    }
 }
