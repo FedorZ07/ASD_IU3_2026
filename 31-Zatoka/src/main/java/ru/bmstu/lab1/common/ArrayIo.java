@@ -28,15 +28,27 @@ public class ArrayIo {
 
     /**
      * Склеивает элементы массива в одну строку через пробел.
-     * Используется StringBuilder, чтобы при большом n не собирать
-     * строку медленным сложением в цикле.
      *
      * @param arr массив чисел
      * @return строка вида "1 2 3" (пустая строка для пустого массива)
      */
     public static String toLine(int[] arr) {
+        return toLine(arr, arr.length);
+    }
+
+    /**
+     * Склеивает через пробел только первые count элементов массива.
+     * Нужно, когда решение работает на месте и полезна только начальная часть массива.
+     * Используется StringBuilder, чтобы при большом n не собирать
+     * строку медленным сложением в цикле.
+     *
+     * @param arr массив чисел
+     * @param count сколько первых элементов вывести (от 0 до arr.length)
+     * @return строка вида "1 2 3" (пустая строка, если count равен 0)
+     */
+    public static String toLine(int[] arr, int count) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < count; i++) {
             if (i > 0) {
                 sb.append(' ');
             }
