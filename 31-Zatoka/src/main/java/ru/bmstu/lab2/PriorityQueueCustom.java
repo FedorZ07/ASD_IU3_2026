@@ -73,6 +73,33 @@ public class PriorityQueueCustom<T> {
         return size == 0;
     }
 
+    /**
+     * Удаляет первое найденное по equals вхождение за O(n).
+     *
+     * @param item удаляемое значение
+     * @return true, если элемент найден и удалён
+     */
+    public boolean remove(T item) {
+        for (int index = 0; index < size; index++) {
+            if (Objects.equals(elements[index], item)) {
+                int last = --size;
+                if (index == last) {
+                    elements[last] = null;
+                    return true;
+                }
+                elements[index] = elements[last];
+                elements[last] = null;
+                if (index > 0 && compare(elementAt(index), elementAt((index - 1) / 2)) < 0) {
+                    siftUp(index);
+                } else {
+                    siftDown(index);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void ensureCapacity() {
         if (size == elements.length) {
             Object[] bigger = new Object[elements.length * 2];
