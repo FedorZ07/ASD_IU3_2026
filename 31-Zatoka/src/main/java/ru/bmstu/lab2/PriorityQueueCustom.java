@@ -32,6 +32,25 @@ public class PriorityQueueCustom<T> {
         elements = new Object[INITIAL_CAPACITY];
     }
 
+    /**
+     * Строит минимальную кучу из массива за O(n), не изменяя исходный массив.
+     *
+     * @param array исходные элементы (без null)
+     */
+    public PriorityQueueCustom(T[] array) {
+        this((Comparator<? super T>) null);
+        Objects.requireNonNull(array, "Массив не должен быть null");
+        for (T item : array) {
+            Objects.requireNonNull(item, "Элемент не должен быть null");
+        }
+        elements = new Object[Math.max(INITIAL_CAPACITY, array.length)];
+        System.arraycopy(array, 0, elements, 0, array.length);
+        size = array.length;
+        for (int index = size / 2 - 1; index >= 0; index--) {
+            siftDown(index);
+        }
+    }
+
     /** Добавляет ненулевой элемент за O(log n) амортизированно. */
     public void add(T item) {
         Objects.requireNonNull(item, "Элемент не должен быть null");
