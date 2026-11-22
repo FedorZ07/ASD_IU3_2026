@@ -1,6 +1,7 @@
 package ru.bmstu.lab2;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -21,6 +22,8 @@ public final class BenchmarksMain {
             int[] input = randomNumbers(count);
             print("PriorityQueueCustom", "add + poll", count, () -> runCustom(input, null));
             print("java.util.PriorityQueue", "add + poll", count, () -> runStandard(input));
+            print("HashMapCustom", "put + get", count, () -> runCustomMap(input));
+            print("java.util.HashMap", "put + get", count, () -> runStandardMap(input));
         }
         int[] input = randomNumbers(100_000);
         print("PriorityQueueCustom min", "add + poll", input.length, () -> runCustom(input, null));
@@ -67,6 +70,32 @@ public final class BenchmarksMain {
     private static void buildByHeapify(Integer[] input) {
         PriorityQueueCustom<Integer> queue = new PriorityQueueCustom<>(input);
         sink = queue.size();
+    }
+
+    private static void runCustomMap(int[] input) {
+        HashMapCustom<Integer, Integer> map = new HashMapCustom<>();
+        for (int value : input) {
+            map.put(value, value);
+        }
+        long checksum = 0;
+        for (int value : input) {
+            Integer result = map.get(value);
+            checksum += result == null ? 0 : result;
+        }
+        sink = checksum;
+    }
+
+    private static void runStandardMap(int[] input) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int value : input) {
+            map.put(value, value);
+        }
+        long checksum = 0;
+        for (int value : input) {
+            Integer result = map.get(value);
+            checksum += result == null ? 0 : result;
+        }
+        sink = checksum;
     }
 
     private static void runStandard(int[] input) {
