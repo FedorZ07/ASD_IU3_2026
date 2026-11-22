@@ -26,6 +26,13 @@ public final class BenchmarksMain {
         print("PriorityQueueCustom min", "add + poll", input.length, () -> runCustom(input, null));
         print("PriorityQueueCustom max", "add + poll", input.length,
                 () -> runCustom(input, Comparator.reverseOrder()));
+        Integer[] boxed = new Integer[input.length];
+        for (int index = 0; index < input.length; index++) {
+            boxed[index] = input[index];
+        }
+        print("PriorityQueueCustom", "построение add", input.length, () -> buildByAdding(boxed));
+        print("PriorityQueueCustom", "построение heapify", input.length, () -> buildByHeapify(boxed));
+        System.err.println("Контрольная сумма измерений: " + sink);
     }
 
     private static int[] randomNumbers(int count) {
@@ -47,6 +54,19 @@ public final class BenchmarksMain {
             checksum += queue.poll();
         }
         sink = checksum;
+    }
+
+    private static void buildByAdding(Integer[] input) {
+        PriorityQueueCustom<Integer> queue = new PriorityQueueCustom<>();
+        for (int value : input) {
+            queue.add(value);
+        }
+        sink = queue.size();
+    }
+
+    private static void buildByHeapify(Integer[] input) {
+        PriorityQueueCustom<Integer> queue = new PriorityQueueCustom<>(input);
+        sink = queue.size();
     }
 
     private static void runStandard(int[] input) {
